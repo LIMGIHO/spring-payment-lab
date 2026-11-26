@@ -30,6 +30,14 @@ curl -i -X POST http://localhost:8080/payments \
 {"orderId":"order-001","status":"APPROVED"}
 ```
 
+## PG 응답 지연 설정
+
+`payment.gateway.delay`(Spring `Duration`, 기본값 `0ms`)로 `FakePaymentGateway`의 응답 지연을 조절합니다. `PaymentService`는 PG 호출 직전과 직후에 주문 번호, 응답 상태, `System.nanoTime()` 기준 경과 시간(ms)을 info 로그로 남깁니다.
+
+```bash
+./gradlew bootRun --args='--payment.gateway.delay=2s'
+```
+
 ## 테스트
 
 ```bash
